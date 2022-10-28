@@ -39,7 +39,7 @@ public class PayDay {
      *   Notice the data type of each of the four.
      * @return a string of the form "Kris 215.00 10.75 204.25”
      */
-    private String pay(String name, Double hourlyRate, Double hoursWorked, Double deductionRate) {
+    String pay(String name, Double hourlyRate, Double hoursWorked, Double deductionRate) {
 
         double grossPay = hourlyRate * hoursWorked;
         double deduction = grossPay * deductionRate;
