@@ -18,12 +18,14 @@ public class PayDay {
         for (TimeCard card : cards) {
             String n = card.getName();
             double w = card.getHoursWorked();
+            double r = card.getHourlyRate();
+            double d = card.getDeductionRate();
             // ... etc for the other 2 fields
 
             // you need to change the parameters on the method to take the input!
-            String result = payday.pay();
+            //String result = payday.pay(String n, double w, double r, double d);
 
-            outputReport.append(result);
+            //outputReport.append(result);
         }
 
         System.out.println(outputReport.toString());
@@ -37,9 +39,14 @@ public class PayDay {
      *   Notice the data type of each of the four.
      * @return a string of the form "Kris 215.00 10.75 204.25”
      */
-    private String pay() {
+    private String pay(String name, Double hourlyRate, Double hoursWorked, Double deductionRate) {
 
-        return "";
+        double grossPay = hourlyRate * hoursWorked;
+        double deduction = grossPay * deductionRate;
+        double netPay = grossPay - deduction;
+
+        return String.valueOf(System.out.format("%s, %.2f, %.2f, %.2f", name, grossPay, deduction, netPay));
+
     }
 
 
@@ -53,7 +60,7 @@ public class PayDay {
         private double hourlyRate;
         private double deductionRate;
 
-        public TimeCard(String n, double w, double r, double d) {
+        public TimeCard(String n, double r, double w, double d) {
             this.name = n;
             this.hoursWorked = w;
             this.hourlyRate = r;
